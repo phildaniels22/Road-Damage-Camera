@@ -579,6 +579,7 @@ namespace Camera2Basic
                 mState = STATE_WAITING_LOCK;
                 mCaptureSession.Capture(mPreviewRequestBuilder.Build(), mCaptureCallback,
                         mBackgroundHandler);
+                RunPrecaptureSequence();
             }
             catch (CameraAccessException e)
             {
@@ -597,6 +598,7 @@ namespace Camera2Basic
                 // Tell #mCaptureCallback to wait for the precapture sequence to be set.
                 mState = STATE_WAITING_PRECAPTURE;
                 mCaptureSession.Capture(mPreviewRequestBuilder.Build(), mCaptureCallback, mBackgroundHandler);
+                CaptureStillPicture();
             }
             catch (CameraAccessException e)
             {
